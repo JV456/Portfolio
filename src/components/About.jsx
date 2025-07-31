@@ -1,0 +1,65 @@
+import { motion } from "framer-motion";
+import Tilt from "react-tilt";
+
+import { SectionWrapper } from "../hoc";
+import { styles } from "../styles";
+import { fadeIn, textVariant } from "../utils/motion";
+
+const ServiceCard = ({ index, title, icon }) => (
+  <Tilt className='xs:w-[250px] w-full'>
+    <motion.div
+      variants={fadeIn("right", "spring", index * 0.5, 0.75)}
+      className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
+    >
+      <div
+        options={{
+          max: 45,
+          scale: 1,
+          speed: 450,
+        }}
+        className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
+      >
+        <img
+          src={icon}
+          alt='web-development'
+          className='w-16 h-16 object-contain'
+        />
+
+        <h3 className='text-white text-[20px] font-bold text-center'>
+          {title}
+        </h3>
+      </div>
+    </motion.div>
+  </Tilt>
+);
+
+const About = () => {
+  return (
+    <>
+      <motion.div variants={textVariant()}>
+        <p className={styles.sectionSubText}>Introduction</p>
+        <h2 className={`${styles.sectionHeadText} bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent`}>Overview</h2>
+      </motion.div>
+
+      <motion.p
+        variants={fadeIn("", "", 0.1, 1)}
+        className='mt-6 sm:mt-8 text-gray-300 text-[16px] sm:text-[18px] lg:text-[20px] w-full max-w-none lg:max-w-5xl xl:max-w-6xl leading-[28px] sm:leading-[32px] lg:leading-[36px] font-light tracking-wide px-2 sm:px-0 text-justify'
+      >
+        I'm a passionate developer with a knack for building intelligent, real-world solutions—especially in{" "}
+        <span className="text-white font-medium">artificial intelligence, machine learning, and multimodal systems</span>. 
+        My background in{" "}
+        <span className="text-white font-medium">Python, C++, and a diverse set of data science libraries</span>{" "}
+        lets me tackle problems creatively and effectively. Whether it's developing{" "}
+        <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent font-semibold">advanced chatbots that understand voice, images, and text</span>{" "}
+        for better healthcare accessibility, or designing{" "}
+        <span className="text-white font-medium">conversational analytics tools for e-commerce</span>, 
+        I strive to blend technical rigor with tangible impact. I enjoy{" "}
+        <span className="text-white font-medium">integrating APIs, creating intuitive interfaces, and shipping robust applications</span>{" "}
+        that solve meaningful problems and elevate the user experience. My goal is simple:{" "}
+        <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent font-semibold">use technology to make a difference where it matters most</span>.
+      </motion.p>
+    </>
+  );
+};
+
+export default SectionWrapper(About, "about");
