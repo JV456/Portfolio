@@ -6,7 +6,7 @@ import { styles } from "../styles";
 import { fadeIn, textVariant } from "../utils/motion";
 
 const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className='xs:w-[250px] w-full'>
+  <Tilt className='w-full max-w-[280px] mx-auto'>
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
       className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
@@ -17,15 +17,15 @@ const ServiceCard = ({ index, title, icon }) => (
           scale: 1,
           speed: 450,
         }}
-        className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
+        className='bg-tertiary rounded-[20px] py-5 px-6 sm:px-12 min-h-[250px] sm:min-h-[280px] flex justify-evenly items-center flex-col'
       >
         <img
           src={icon}
           alt='web-development'
-          className='w-16 h-16 object-contain'
+          className='w-12 h-12 sm:w-16 sm:h-16 object-contain'
         />
 
-        <h3 className='text-white text-[20px] font-bold text-center'>
+        <h3 className='text-white text-[16px] sm:text-[18px] lg:text-[20px] font-bold text-center leading-tight'>
           {title}
         </h3>
       </div>
@@ -36,14 +36,14 @@ const ServiceCard = ({ index, title, icon }) => (
 const About = () => {
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={textVariant()} className="text-center lg:text-left">
         <p className={styles.sectionSubText}>Introduction</p>
         <h2 className={`${styles.sectionHeadText} bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent`}>Overview</h2>
       </motion.div>
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
-        className='mt-6 sm:mt-8 text-gray-300 text-[16px] sm:text-[18px] lg:text-[20px] w-full max-w-none lg:max-w-5xl xl:max-w-6xl leading-[28px] sm:leading-[32px] lg:leading-[36px] font-light tracking-wide px-2 sm:px-0 text-justify'
+        className='mt-6 sm:mt-8 text-gray-300 text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[20px] w-full max-w-none lg:max-w-5xl xl:max-w-6xl leading-[22px] sm:leading-[28px] lg:leading-[32px] xl:leading-[36px] font-light tracking-wide px-2 sm:px-0 text-center sm:text-justify'
       >
         I'm a passionate developer with a knack for building intelligent, real-world solutions—especially in{" "}
         <span className="text-white font-medium">artificial intelligence, machine learning, and multimodal systems</span>. 
