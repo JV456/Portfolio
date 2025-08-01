@@ -43,8 +43,7 @@ const Navbar = () => {
           }}
         >
           <p className='text-white text-[18px] font-bold cursor-pointer flex '>
-            JAI VADULA &nbsp;
-            <span className='sm:block hidden'> | AI & ML Portfolio</span>
+            JAI VADULA
           </p>
         </Link>
 
