@@ -1,15 +1,23 @@
-import { useState, useRef, Suspense } from "react";
+import { PointMaterial, Points, Preload } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
+import { Suspense, useMemo, useRef } from "react";
 
 const Stars = (props) => {
   const ref = useRef();
-  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.2 }));
+  
+  // Reduce particles for better performance - from 5000 to 2000
+  const sphere = useMemo(() => 
+    random.inSphere(new Float32Array(2000), { radius: 1.2 }), 
+    []
+  );
 
+  // Throttle frame updates for better performance
   useFrame((state, delta) => {
-    ref.current.rotation.x -= delta / 10;
-    ref.current.rotation.y -= delta / 15;
+    if (ref.current) {
+      ref.current.rotation.x -= delta / 20; // Slower rotation
+      ref.current.rotation.y -= delta / 30; // Slower rotation
+    }
   });
 
   return (
@@ -30,11 +38,15 @@ const Stars = (props) => {
 const StarsCanvas = () => {
   return (
     <div className='w-full h-auto absolute inset-0 z-[-1]'>
-      <Canvas camera={{ position: [0, 0, 1] }}>
+      <Canvas 
+        camera={{ position: [0, 0, 1] }}
+        dpr={[1, 1.5]} // Limit device pixel ratio for performance
+        performance={{ min: 0.5 }} // Performance mode
+        frameloop="demand" // Only render when needed
+      >
         <Suspense fallback={null}>
           <Stars />
         </Suspense>
-
         <Preload all />
       </Canvas>
     </div>

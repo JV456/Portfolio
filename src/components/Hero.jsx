@@ -1,7 +1,8 @@
 
+import { memo } from 'react';
 import { styles } from "../styles";
 
-const Hero = () => {
+const Hero = memo(() => {
   return (
     <section className={`relative w-full h-[60vh] sm:h-[65vh] mx-auto overflow-hidden`}>
       <div
@@ -26,6 +27,8 @@ const Hero = () => {
       </div>
     </section>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;
